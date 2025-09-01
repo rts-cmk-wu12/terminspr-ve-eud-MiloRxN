@@ -12,6 +12,21 @@ Morgen - (tidspunkt)
 start af opgaven kl 09:32
 
 Eftermiddag - (tidspunkt)
+afsluttet dagen kl 15:40
+
+Hvad jeg har fået lavet?
+
+* Init: 
+  * Basic project struktur routes(Group), components, hooks, utils, etc.
+
+* Create:
+  * Styling: 
+    * Custom variables til Tailwind, iforhold til design.
+  * Komponenter:
+    * Client: Button komponent.
+    * Server: Heading Komponent.
+    * server: ActivityCard komponent.
+    * server: CalenderItem komponent.
 
 ## Dag 2
 
