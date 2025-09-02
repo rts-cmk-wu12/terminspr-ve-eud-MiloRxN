@@ -31,6 +31,8 @@ Hvad jeg har fået lavet?
 ## Dag 2
 
 Morgen - (tidspunkt)  
+fortsættelse på projekt kl 8:20
+
 Eftermiddag - (tidspunkt)
 
 ## Dag 3
