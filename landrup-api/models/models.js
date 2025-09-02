@@ -25,7 +25,9 @@ User.init({
 }, { sequelize, modelName: "user" });
 
 Asset.init({
-	url: DataTypes.TEXT
+	url: DataTypes.TEXT,
+  width: DataTypes.INTEGER,
+  height: DataTypes.INTEGER
 }, { sequelize, modelName: "asset" });
 
 User.belongsToMany(Activity, { through: "roster" });

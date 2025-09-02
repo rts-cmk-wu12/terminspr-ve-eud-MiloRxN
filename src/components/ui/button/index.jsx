@@ -1,9 +1,9 @@
 "use client"
 
-export default function Button({ event, text}) {
+export default function Button({ event, text, className=""}) {
 
   const variants = {
-    default: "bg-primary-background text-primary-foreground min-h-13.5 min-w-62 rounded-button"
+    default: "bg-primary-background text-button-text min-h-13.5 min-w-62 rounded-button"
   }
 
   // Standard Event
@@ -12,7 +12,7 @@ export default function Button({ event, text}) {
   }
 
   return(
-    <button className={variants.default} onClick={event || clickHandler}>
+    <button className={`${variants.default} ${className}`} onClick={event || clickHandler}>
       {text}
     </button>
   )

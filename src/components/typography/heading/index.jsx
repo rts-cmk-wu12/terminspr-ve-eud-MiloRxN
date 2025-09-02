@@ -1,7 +1,7 @@
 export default function Heading({ text, size, level, colored = false, style }) {
   const variants = {
     default: {
-      standard: "font-ubuntu text-primary-foreground",
+      standard: "font-ubuntu text-primary-heading capitalize",
       size: {
         small: "text-lg",
         medium: "text-2xl",

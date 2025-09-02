@@ -16,15 +16,23 @@
   --color-lavender-magenta: #E1A1E9;
   --color-black: #000000;
   --color-silver: #C4C4C4;
+  --color-logo-purple: #913693;
+  --color-logo-pink: #E856EB;
+  --color-logo-stroke: #431567;
+  --color-white: #ffffff;
 
   /* Background / Foregrounds */
-  --color-primary-background: var(--color-violet);
-  --color-primary-foreground: var(--color-bright-gray);
-  --color-secondary-background: var(--color-lavender-magenta);
-  --color-secondary-foreground: var(--color-black);
-  --color-navigation-background: var(--color-gray);
-  --color-search-background: --alpha(var(--color-silver) / 30%);
-  --color-activity-card-textarea: --alpha(var(--color-lavender-magenta) / 40%);
+  --color-primary-background: var(--color-violet); /* Background */
+  --color-primary-foreground: var(--color-white); /* Text */
+  --color-secondary-background: var(--color-lavender-magenta); /* Background */
+  --color-secondary-foreground: var(--color-black); /* Text */
+  
+  /* more specific */
+  --color-navigation-background: var(--color-gray); /* Background */
+  --color-search-background: --alpha(var(--color-silver) / 30%); /* Background */
+  --color-activity-card-textarea: --alpha(var(--color-lavender-magenta) / 80%); /* Background */
+  --color-button-text: var(--color-gray); /* Text */
+  --color-primary-heading: var(--color-bright-gray); /* Text */
 
   /* Fonts */
   --font-roboto: Roboto, system-ui;
@@ -38,6 +46,18 @@
   --radius-activity-card-textarea: 0 39px 0 39px;
 }
 
-body {
+/* https://cixel.com.au/blog/tailwind-css-v4-functional-utilities */
+@utility text-stroke-* {
+  -webkit-text-stroke-width: --value(integer)px;
+  -webkit-text-stroke-width: --value([*]);
+  -webkit-text-stroke-color: --value(--color-*, [color]);
+  -webkit-text-stroke-color: --modifier(--color-*, [color]);
+}
 
+html{
+  color: var(--color-primary-foreground);
+}
+
+body{
+  background-color: var(--color-primary-background);
 }

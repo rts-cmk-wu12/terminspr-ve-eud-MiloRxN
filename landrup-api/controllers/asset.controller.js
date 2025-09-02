@@ -1,11 +1,21 @@
 var { Asset } = require("../models/models");
 var saveFile = require("../services/asset");
+const { join } = require("path");
+const { readFileSync } = require("fs");
+const { imageSize } = require("image-size");
 
 async function createSingleAsset(req, res, next) {
 	try {
 		let file = saveFile(req.files.file);
+    let filePath = join(__dirname, "../assets", file);
+    
+    const buffer = readFileSync(filePath);
+    const dimensions = imageSize(buffer);
+
 		let asset = await Asset.create({
-			url: "http://localhost:4000/file-bucket/" + file
+			url: "http://localhost:4000/file-bucket/" + file,
+      width: dimensions.width,
+      height: dimensions.height
 		});
 		res.json(asset);
 	} catch (error) {
@@ -13,6 +23,7 @@ async function createSingleAsset(req, res, next) {
 		res.status(500).end();
 	}
 }
+
 
 async function getAllAssets(req, res, next) {
 	try {

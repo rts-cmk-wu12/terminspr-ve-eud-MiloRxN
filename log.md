@@ -34,6 +34,39 @@ Morgen - (tidspunkt)
 fortsættelse på projekt kl 8:20
 
 Eftermiddag - (tidspunkt)
+Afsluttet dagen kl 15:45
+
+* Init: 
+  * Lavet routes til de forskellige sider.
+
+* Create:
+  * Styling: 
+    * Custom utility function til text-stroke.
+  * Komponenter:
+    * Client: Header komponent.
+    * Server: Logo komponent.
+    * Server: Skeleton komponent. 
+    * Server: ActivityCardSkeleton komponent.
+  * Hooks:
+    * useTitleFromPath: retunere en title baseret på usePathname hook.
+    * useFetch: en custom genanvendelig fetch hook.
+  * Pages:
+    * Velkommen: mangler knappens funktionalitet.
+    * Forside: integreret ActivityCard komponent med apiet og noget skeleton loading.
+
+* Update:
+  * Komponenter:
+    * Client: ActivityCard; Integreret med api så det nu automatisk henter aktiviteter.
+
+* API:
+  * Biblioteker:
+    * Installeret: image-size til at skaffe billedets dimensioner på buffers.
+  * Model:
+    * Assets: Opdateret til at inkludere billedets dimensioner i integer.
+  * Controller:
+    * Asset: Opdateret til at håndtere billedets dimensioner ved oprettelse af en asset.
+  * Migration:
+    * Lavet et migration script til at opdatere eksisterende assets med deres billed dimensioner.
 
 ## Dag 3
 
