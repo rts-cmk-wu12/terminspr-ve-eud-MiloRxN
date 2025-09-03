@@ -8,8 +8,6 @@ import ActivityCardSkeleton from "./skeleton";
 export default function ActivityCard() {
   const { data, error, loading } = useFetch('activities');
 
-  console.log(data)
-
   if (loading) {
     return (
       <ul className="flex flex-col gap-8 py-4">

@@ -74,6 +74,28 @@ Morgen - (tidspunkt)
 fortsættelse på projekt kl 08:13
 
 Eftermiddag - (tidspunkt)
+afsluttet kl 15:16
+
+* Create:
+  * Styling: 
+    * Custom component classes for tailwind.
+  * Komponenter:
+    * Client: Login form.
+    * Client: ActivityDetails.
+    * Client: LinkButton. it was needed for velkommen da man skal sendes videre.
+    * Client: DelayedLink. as the linkbutton should animate in.
+  * Pages:
+    * AktivitetDetails: mangler knappens funktionalitet.
+    * Login: Login siden er fuld funktionel nu.
+  * Actions:
+    * Login: Håndtere login formularen og sætter to cookies access_token, user_info(userid, role)
+  * Middleware: made so it checks if its first time visiting the app via a sessioncookie
+
+* Update:
+  * Komponenter:
+    * Client: button; gjorde det muligt at kunne sætte type på knappen.
+    * Server: Heading; tilføjet en ekstra størrelse.
+
 
 ## Dag 4
 

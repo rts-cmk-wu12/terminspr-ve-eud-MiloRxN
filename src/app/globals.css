@@ -33,6 +33,7 @@
   --color-activity-card-textarea: --alpha(var(--color-lavender-magenta) / 80%); /* Background */
   --color-button-text: var(--color-gray); /* Text */
   --color-primary-heading: var(--color-bright-gray); /* Text */
+  --color-input-background: var(--color-bright-gray); /* Background */
 
   /* Fonts */
   --font-roboto: Roboto, system-ui;
@@ -52,6 +53,23 @@
   -webkit-text-stroke-width: --value([*]);
   -webkit-text-stroke-color: --value(--color-*, [color]);
   -webkit-text-stroke-color: --modifier(--color-*, [color]);
+}
+
+/* --------------------------------------------------------- */
+
+@layer components {
+  .wrapper {
+    @apply flex flex-col min-h-screen bg-cover bg-center bg-no-repeat;
+    background-image: url('/images/splash-image.jpg');
+  }
+
+  .wrapper--shadow::before {
+    @apply absolute inset-0 bg-cover bg-center bg-no-repeat;
+    content: '';
+    background-image: url('/images/shadow-box.svg');
+    width: 100%;
+    height: 100%;
+  }
 }
 
 html{

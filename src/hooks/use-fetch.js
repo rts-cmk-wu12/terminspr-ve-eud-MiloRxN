@@ -1,5 +1,6 @@
 'use client';
 
+// Taget fra tidligere projekt
 import { useEffect, useState } from "react";
 
 function useFetch(endpoint, baseUrl = 'http://localhost:4000/api/v1/') {

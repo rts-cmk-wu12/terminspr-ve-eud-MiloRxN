@@ -1,20 +1,19 @@
 import Logo from "@/components/typography/logo";
 import Button from "@/components/ui/button";
+import DelayedLink from "@/components/ui/link-button/delayed";
 
 export const metadata = {
   title: "Velkommen"
 };
 
-function WelcomePage() {
+export default function WelcomePage() {
   return (
     <>
-      <div className="bg-[url('/images/splash-image.jpg')] min-h-screen bg-no-repeat bg-center bg-cover flex flex-col items-start justify-center relative pt-30">
+      <div className="wrapper flex flex-col items-start justify-center relative pt-30">
         <Logo />
 
-        <Button text={"Kom i gang"} className="self-center absolute bottom-15"/>
+        <DelayedLink/>
       </div>
     </>
   );
 }
-
-export default WelcomePage;
