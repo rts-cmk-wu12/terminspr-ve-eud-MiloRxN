@@ -70,7 +70,9 @@ Afsluttet dagen kl 15:45
 
 ## Dag 3
 
-Morgen - (tidspunkt)  
+Morgen - (tidspunkt)
+fortsættelse på projekt kl 08:13
+
 Eftermiddag - (tidspunkt)
 
 ## Dag 4
