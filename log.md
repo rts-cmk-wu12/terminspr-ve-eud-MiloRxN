@@ -102,20 +102,26 @@ afsluttet kl 15:16
 Morgen - (tidspunkt)
 forsattet projektet kl 08:17
 Eftermiddag - (tidspunkt)
+afsluttet kl 15:45
 
 * Create:
-  * Styling: 
-
   * Komponenter:
-    
-  * Pages:
-    
+    * Client: ParticipateButton; en knap der kan tilmelde/afmelde en bruger fra en aktivitet.
   * Actions:
-    
-  * Middleware: 
+
+  * Utils:
+    * fetchUser: en funktion der henter bruger data fra apiet baseret på userId.
+    * updateUserActivity: en funktion der opdatere en brugers tilmelding/afmelding til en aktivitet.
+    * getAccessToken: en funktion der henter access_token fra cookies.
   
 * Update:
   * Komponenter:
+    * Client: ParticipateButton; forbedret bruger feedback med loading state og disabled state.
+    * Client: LoginForm; forbedret den med redirect til den side du angiver. fx hvis du klikker login fra aktivitet siden, så kommer du tilbage til den side efter login.
+  * Actions:
+    * Login: implementeret redirect efter login.
+  * Pages:
+    * AktivitetDetails: integreret ParticipateButton komponenten med apiet.
     
 ## Dag 5
 

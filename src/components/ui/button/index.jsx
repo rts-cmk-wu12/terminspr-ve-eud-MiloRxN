@@ -1,6 +1,6 @@
 "use client"
 
-export default function Button({type, event, text, className=""}) {
+export default function Button({type="", event, disabled = false, text, className=""}) {
 
   const variants = {
     default: "bg-primary-background text-button-text min-h-13.5 min-w-62 rounded-button"
@@ -12,8 +12,8 @@ export default function Button({type, event, text, className=""}) {
   }
 
   return(
-    <button type={type} className={`${variants.default} ${className}`} onClick={event || clickHandler}>
-      {text}
+    <button disabled={disabled} type={type || "button"} className={`${variants.default} ${className}`} onClick={event || clickHandler}>
+      {text || "Needs text property"}
     </button>
   )
 

@@ -5,15 +5,16 @@ import { redirect } from "next/navigation";
 import z from "zod";
 
 async function login(prevState, formData) {
-  const { username, password } = Object.fromEntries(formData);
+  const { username, password, redirectTo } = Object.fromEntries(formData);
 
   const schema = z.object({
     username: z.string().min(1, { message: 'Brugernavn skal være udfyldt' }),
-    password: z.string().min(1, { message: 'Adgangskode skal være udfyldt' })
+    password: z.string().min(1, { message: 'Adgangskode skal være udfyldt' }),
+    redirectTo: z.string().optional()
   });
 
   const validated = schema.safeParse({
-    username, password
+    username, password, redirectTo
   });
 
   if (!validated.success) return {
@@ -58,6 +59,7 @@ async function login(prevState, formData) {
     })
   });
 
+  if (validated.data?.redirectTo) redirect(validated.data.redirectTo);
   redirect('/');
 }
 

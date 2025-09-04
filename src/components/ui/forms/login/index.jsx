@@ -4,9 +4,19 @@ import { useActionState } from "react";
 import login from "@/actions/login";
 import Button from "../../button";
 import Heading from "@/components/typography/heading";
+import { useSearchParams } from "next/navigation";
 
 export default function LoginFormular({ className = "" }) {
-  const [formState, formAction, isPending] = useActionState(login);
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/";
+  const [formState, formAction, isPending] = useActionState(
+    async (_, formData) => {
+      if (redirectTo) {
+        formData.append("redirectTo", redirectTo);
+      }
+      return await login(null, formData);
+    }
+  );
 
   return (
     <form action={formAction} className="flex flex-col justify-center gap-4 z-1 p-8 my-auto">
