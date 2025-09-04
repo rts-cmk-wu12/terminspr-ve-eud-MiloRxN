@@ -99,9 +99,24 @@ afsluttet kl 15:16
 
 ## Dag 4
 
-Morgen - (tidspunkt)  
+Morgen - (tidspunkt)
+forsattet projektet kl 08:17
 Eftermiddag - (tidspunkt)
 
+* Create:
+  * Styling: 
+
+  * Komponenter:
+    
+  * Pages:
+    
+  * Actions:
+    
+  * Middleware: 
+  
+* Update:
+  * Komponenter:
+    
 ## Dag 5
 
 Morgen - (tidspunkt)  
