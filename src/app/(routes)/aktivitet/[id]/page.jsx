@@ -1,6 +1,7 @@
 import ActivityDetails from "@/components/ui/activity-details";
+import NavigationBar from "@/components/ui/navigation-bar";
 import fetchUser from "@/utils/fetch-user";
-import { cookies } from "next/headers";
+import { getUserInfo } from "@/utils/get-user-info";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
@@ -13,8 +14,7 @@ export async function generateMetadata({ params }) {
 };
 
 export default async function ActivityDetailsPage({ params }) {
-  const { id } = await params
-
+  const { id } = await params;
   let user = null;
   let activity = null;
 
@@ -26,23 +26,17 @@ export default async function ActivityDetailsPage({ params }) {
   } catch (error) {
     console.error("Failed to fetch activity:", error);
   }
-
-  const cookieStore = await cookies();
-  const cookie = cookieStore.get('user_info');
-
-  if (cookie){
-    const user_id = JSON.parse(cookie.value).userId;
-    user = await fetchUser(`users/${user_id}`)
-    // console.log("User data fetched:", user);
-  } else {
-    // console.log("No user_info cookie found");
-  }
   
-  // console.log("Final user passed to component:", user);
+  const { userId } = await getUserInfo();
+
+  if (userId){
+    user = await fetchUser(`users/${userId}`)
+  }
   
   return (
     <>
       <ActivityDetails id={id} user={user} activity={activity} />
+      <NavigationBar/>
     </>
   )
 }

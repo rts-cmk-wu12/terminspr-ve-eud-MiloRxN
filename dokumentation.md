@@ -46,20 +46,85 @@ Et valideringsBibliotek til objekter og strings. Jeg bruger Zod til blandt andet
 
 ## Kode-eksempler
 
-### Dynamisk indhold fra API
+### Server-side utility funktion
 
-```jsx
-// src/app/page.jsx
-// Komponent her
+```javascript
+// src/utils/get-user-info.js
+'use server';
+import { cookies } from 'next/headers';
+
+export async function getUserInfo(request = null) {
+  let userInfoCookie;
+  
+  if (request) {
+    userInfoCookie = request.cookies.get('user_info');
+  } else {
+    const cookieStore = await cookies();
+    userInfoCookie = cookieStore.get('user_info');
+  }
+  
+  if (!userInfoCookie) {
+    return { 
+      isAuthenticated: false, 
+      isInstructor: false, 
+      userId: null,
+      username: null,
+      role: null
+    };
+  }
+  
+  try {
+    const userInfo = JSON.parse(userInfoCookie.value);
+    const isInstructor = userInfo.role === 'instructor';
+    
+    return {
+      isAuthenticated: true,
+      isInstructor: isInstructor,
+      userId: userInfo.userId,
+      username: userInfo.username,
+      role: userInfo.role
+    };
+  } catch (error) {
+    console.error('Error parsing user info:', error);
+    return { 
+      isAuthenticated: false, 
+      isInstructor: false, 
+      userId: null,
+      username: null,
+      role: null
+    };
+  }
+}
 ```
-*Her hentes data fra et API, som vises dynamisk på siden. Komponentet `...` bruges til ...*
+*Server-side utility der håndterer userauth via cookies. Funktionen kan bruges både i server komponenter og middleware, og returnerer brugerinfo med rolle-baseret adgang.*
 
 ### Genanvendelig komponent
 
 ```jsx
-// src/components/typography/paragraph/index.jsx
-// Komponent her
+// src/components/ui/button/index.jsx
+"use client"
+
+export default function Button({type="", event, disabled = false, text, className=""}) {
+  const variants = {
+    default: "bg-primary-background text-button-text min-h-13.5 min-w-62 rounded-button"
+  }
+
+  function clickHandler(event) {
+    console.log("Clicked", event.target)
+  }
+
+  return(
+    <button 
+      disabled={disabled} 
+      type={type || "button"} 
+      className={`${variants.default} ${className}`} 
+      onClick={event || clickHandler}
+    >
+      {text || "Needs text property"}
+    </button>
+  )
+}
 ```
-*Sikrer ensartet styling og genbrug på tværs af projektet.*
+*Sikrer ensartet styling og genbrug på tværs af projektet. Knap-komponenten håndterer forskellige props som tekst, styling, events og disabled state.*
 
 ---

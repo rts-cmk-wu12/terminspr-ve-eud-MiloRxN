@@ -1,4 +1,4 @@
-import ActivityCard from "@/components/ui/activity-card";
+import ActivityList from "@/components/ui/activity-card/activity-list";
 
 export const metadata = {
   title: "Aktiviteter"
@@ -7,7 +7,7 @@ export const metadata = {
 function HomePage() {
   return (
     <>
-      <ActivityCard />
+      <ActivityList />
     </>
   );
 }

@@ -3,8 +3,6 @@ import { revalidatePath } from "next/cache";
 import { getAccessToken } from "./get-access-token";
 
 export default async function updateUserActivity({ userId, activityId, method }) {
-  // console.log("method: ", method, "userID ", userId, "activityId", activityId)
-
   try {
     const response = await fetch(`http://localhost:4000/api/v1/users/${userId}/activities/${activityId}`, {
       method,

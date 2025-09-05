@@ -45,6 +45,9 @@
   --radius-calender-items: 11px;
   --radius-activity-card: 39px 39px 0 39px;
   --radius-activity-card-textarea: 0 39px 0 39px;
+
+  /* Box Shadows */
+  --shadow-top: 0 -3px 4px --alpha(var(--color-black) / 25%);
 }
 
 /* https://cixel.com.au/blog/tailwind-css-v4-functional-utilities */
@@ -54,6 +57,8 @@
   -webkit-text-stroke-color: --value(--color-*, [color]);
   -webkit-text-stroke-color: --modifier(--color-*, [color]);
 }
+
+
 
 /* --------------------------------------------------------- */
 

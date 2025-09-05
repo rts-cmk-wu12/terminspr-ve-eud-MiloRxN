@@ -1,14 +1,20 @@
 import Heading from "@/components/typography/heading";
+import Link from "next/link";
 
-export default function CalenderItem() {
-
+export default function CalenderItem({ activity, href }) {
   return (
-    <>
-      <section className="rounded-calender-items bg-activity-card-textarea p-5">
-        <Heading level={2} size={"large"} text={"Junior Fitness Dance dsadw adw as d"} colored={true} style={"overflow-hidden overflow-ellipsis  whitespace-nowrap"} />
-        <span>Mandag 15:45</span>
+    <Link href={href}>
+      <section
+        className="rounded-calender-items bg-white p-5 cursor-pointer hover:opacity-80 transition-opacity"
+      >
+        <Heading
+          level={2}
+          text={activity.name}
+          colored={true}
+          style={"overflow-hidden overflow-ellipsis whitespace-nowrap text-2xl"}
+        />
+        <span className="capitalize text-black">{activity.weekday} {activity.time}</span>
       </section>
-    </>
-  )
-
+    </Link>
+  );
 }

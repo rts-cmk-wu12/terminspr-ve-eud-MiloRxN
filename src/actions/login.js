@@ -5,16 +5,17 @@ import { redirect } from "next/navigation";
 import z from "zod";
 
 async function login(prevState, formData) {
-  const { username, password, redirectTo } = Object.fromEntries(formData);
+  const { username, password, redirectTo, rememberMe } = Object.fromEntries(formData);
 
   const schema = z.object({
     username: z.string().min(1, { message: 'Brugernavn skal være udfyldt' }),
     password: z.string().min(1, { message: 'Adgangskode skal være udfyldt' }),
-    redirectTo: z.string().optional()
+    redirectTo: z.string().optional(),
+    rememberMe: z.string().optional()
   });
 
   const validated = schema.safeParse({
-    username, password, redirectTo
+    username, password, redirectTo, rememberMe
   });
 
   if (!validated.success) return {
@@ -45,10 +46,15 @@ async function login(prevState, formData) {
   if (!Object.keys(data).length) return;
 
   const cookieStore = await cookies();
+  
+  const cookieExpiry = validated.data.rememberMe === 'on' 
+    ? new Date(Date.now() + 365 * 24 * 60 * 60 * 1000) // 1 year if remembered
+    : new Date(data.validUntil); // Normal session expiry from API
+
   cookieStore.set({
     name: 'access_token',
     value: data.token,
-    expires: data.validUntil
+    expires: cookieExpiry
   });
 
   cookieStore.set({
@@ -56,7 +62,8 @@ async function login(prevState, formData) {
     value: JSON.stringify({
       userId: data.userId,
       role: data.role
-    })
+    }),
+    expires: cookieExpiry
   });
 
   if (validated.data?.redirectTo) redirect(validated.data.redirectTo);

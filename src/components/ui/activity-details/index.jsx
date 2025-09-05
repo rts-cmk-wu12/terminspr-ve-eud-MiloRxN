@@ -6,10 +6,6 @@ import ParticipateButton from "../participate-button"
 import LinkButton from "../link-button"
 
 export default function ActivityDetails({ id, user, activity }) {
-  
-  console.log("ActivityDetails received user:", user); // Debug log
-  console.log("ActivityDetails received activity:", activity); // Debug log
-  
   let userStatus = null;
   if (user && activity) {
     const age = user?.age;
@@ -22,7 +18,6 @@ export default function ActivityDetails({ id, user, activity }) {
       userId: user?.id,
       activityId: activity?.id,
     };
-    console.log("UserStatus calculated:", userStatus); // Debug log
   }
 
   if (!activity) {
@@ -33,11 +28,11 @@ export default function ActivityDetails({ id, user, activity }) {
     <>
       <div className="relative">
         <Image priority className="max-h-110 object-cover" src={activity.asset.url} width={activity.asset.width} height={activity.asset.height} alt={activity.name} />
-        {user ? (
+        {user && user?.role !== 'instructor' ? (
           <ParticipateButton userStatus={userStatus} />
-        ) : (
+        ) : !user ? (
           <LinkButton href={`/login?redirect=/aktivitet/${id}`} text="Login" className="absolute bottom-5 right-5" />
-        )}
+        ) : null}
       </div>
       <section className="px-8 py-4">
         <Heading text={activity.name} />

@@ -128,8 +128,7 @@ afsluttet kl 15:45
 Morgen - (tidspunkt)
 startet kl 08:10
 Eftermiddag - (tidspunkt)
+afsluttet kl 15:50
 
-* Create:
-
-* Update:
+    
  
