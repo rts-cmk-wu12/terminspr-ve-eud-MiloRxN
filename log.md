@@ -9,24 +9,126 @@ Husk, at du ikke må arbejde på din opgave mellem kl. 16:00 og kl. 8:00.
 ## Dag 1
 
 Morgen - (tidspunkt)  
+start af opgaven kl 09:32
+
 Eftermiddag - (tidspunkt)
+afsluttet dagen kl 15:40
+
+Hvad jeg har fået lavet?
+
+* Init: 
+  * Basic project struktur routes(Group), components, hooks, utils, etc.
+
+* Create:
+  * Styling: 
+    * Custom variables til Tailwind, iforhold til design.
+  * Komponenter:
+    * Client: Button komponent.
+    * Server: Heading Komponent.
+    * server: ActivityCard komponent.
+    * server: CalenderItem komponent.
 
 ## Dag 2
 
 Morgen - (tidspunkt)  
+fortsættelse på projekt kl 8:20
+
 Eftermiddag - (tidspunkt)
+Afsluttet dagen kl 15:45
+
+* Init: 
+  * Lavet routes til de forskellige sider.
+
+* Create:
+  * Styling: 
+    * Custom utility function til text-stroke.
+  * Komponenter:
+    * Client: Header komponent.
+    * Server: Logo komponent.
+    * Server: Skeleton komponent. 
+    * Server: ActivityCardSkeleton komponent.
+  * Hooks:
+    * useTitleFromPath: retunere en title baseret på usePathname hook.
+    * useFetch: en custom genanvendelig fetch hook.
+  * Pages:
+    * Velkommen: mangler knappens funktionalitet.
+    * Forside: integreret ActivityCard komponent med apiet og noget skeleton loading.
+
+* Update:
+  * Komponenter:
+    * Client: ActivityCard; Integreret med api så det nu automatisk henter aktiviteter.
+
+* API:
+  * Biblioteker:
+    * Installeret: image-size til at skaffe billedets dimensioner på buffers.
+  * Model:
+    * Assets: Opdateret til at inkludere billedets dimensioner i integer.
+  * Controller:
+    * Asset: Opdateret til at håndtere billedets dimensioner ved oprettelse af en asset.
+  * Migration:
+    * Lavet et migration script til at opdatere eksisterende assets med deres billed dimensioner.
 
 ## Dag 3
 
-Morgen - (tidspunkt)  
+Morgen - (tidspunkt)
+fortsættelse på projekt kl 08:13
+
 Eftermiddag - (tidspunkt)
+afsluttet kl 15:16
+
+* Create:
+  * Styling: 
+    * Custom component classes for tailwind.
+  * Komponenter:
+    * Client: Login form.
+    * Client: ActivityDetails.
+    * Client: LinkButton. it was needed for velkommen da man skal sendes videre.
+    * Client: DelayedLink. as the linkbutton should animate in.
+  * Pages:
+    * AktivitetDetails: mangler knappens funktionalitet.
+    * Login: Login siden er fuld funktionel nu.
+  * Actions:
+    * Login: Håndtere login formularen og sætter to cookies access_token, user_info(userid, role)
+  * Middleware: made so it checks if its first time visiting the app via a sessioncookie
+
+* Update:
+  * Komponenter:
+    * Client: button; gjorde det muligt at kunne sætte type på knappen.
+    * Server: Heading; tilføjet en ekstra størrelse.
+
 
 ## Dag 4
 
-Morgen - (tidspunkt)  
+Morgen - (tidspunkt)
+forsattet projektet kl 08:17
 Eftermiddag - (tidspunkt)
+afsluttet kl 15:45
 
+* Create:
+  * Komponenter:
+    * Client: ParticipateButton; en knap der kan tilmelde/afmelde en bruger fra en aktivitet.
+  * Actions:
+
+  * Utils:
+    * fetchUser: en funktion der henter bruger data fra apiet baseret på userId.
+    * updateUserActivity: en funktion der opdatere en brugers tilmelding/afmelding til en aktivitet.
+    * getAccessToken: en funktion der henter access_token fra cookies.
+  
+* Update:
+  * Komponenter:
+    * Client: ParticipateButton; forbedret bruger feedback med loading state og disabled state.
+    * Client: LoginForm; forbedret den med redirect til den side du angiver. fx hvis du klikker login fra aktivitet siden, så kommer du tilbage til den side efter login.
+  * Actions:
+    * Login: implementeret redirect efter login.
+  * Pages:
+    * AktivitetDetails: integreret ParticipateButton komponenten med apiet.
+    
 ## Dag 5
 
-Morgen - (tidspunkt)  
+Morgen - (tidspunkt)
+startet kl 08:10
 Eftermiddag - (tidspunkt)
+afsluttet kl 15:50
+
+    
+ 

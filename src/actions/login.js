@@ -1,0 +1,73 @@
+'use server';
+
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import z from "zod";
+
+async function login(prevState, formData) {
+  const { username, password, redirectTo, rememberMe } = Object.fromEntries(formData);
+
+  const schema = z.object({
+    username: z.string().min(1, { message: 'Brugernavn skal være udfyldt' }),
+    password: z.string().min(1, { message: 'Adgangskode skal være udfyldt' }),
+    redirectTo: z.string().optional(),
+    rememberMe: z.string().optional()
+  });
+
+  const validated = schema.safeParse({
+    username, password, redirectTo, rememberMe
+  });
+
+  if (!validated.success) return {
+    ...validated,
+    ...(z.treeifyError(validated.error))
+  };
+
+  const response = await fetch('http://localhost:4000/auth/token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      username: validated.data.username,
+      password: validated.data.password
+    })
+  });
+
+  if (response.status !== 200) return {
+    success: false,
+    errors: ['Brugernavn eller adgangskode er forkert']
+  };
+
+  const data = await response.json();
+
+  console.log(data)
+
+  if (!Object.keys(data).length) return;
+
+  const cookieStore = await cookies();
+  
+  const cookieExpiry = validated.data.rememberMe === 'on' 
+    ? new Date(Date.now() + 365 * 24 * 60 * 60 * 1000) // 1 year if remembered
+    : new Date(data.validUntil); // Normal session expiry from API
+
+  cookieStore.set({
+    name: 'access_token',
+    value: data.token,
+    expires: cookieExpiry
+  });
+
+  cookieStore.set({
+    name: 'user_info',
+    value: JSON.stringify({
+      userId: data.userId,
+      role: data.role
+    }),
+    expires: cookieExpiry
+  });
+
+  if (validated.data?.redirectTo) redirect(validated.data.redirectTo);
+  redirect('/');
+}
+
+export default login;
